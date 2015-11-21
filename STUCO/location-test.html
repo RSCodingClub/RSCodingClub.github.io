@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <title>Location Services Test Page</title>
     <script>
@@ -10,6 +8,7 @@
             API_KEY     = "AIzaSyDOGrTCgXi7GXItcHrh881JdGLMVycsuPs",
             BASE_URL    = "https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=$SIZE&maptype=roadmap&markers=color:red%7Clabel:R%7C$LAT,$LON&key=$KEY",
             FINAL_URL   = BASE_URL.replace("$KEY", API_KEY).replace("$LAT", LAT).replace("$LON", LON).replace("$SIZE","600x300");
+            MOBILE_URL   = BASE_URL.replace("$KEY", API_KEY).replace("$LAT", LAT).replace("$LON", LON).replace("$SIZE","460x230");
         
         document.getElementById("test").onclick = navigator.geolocation.getCurrentPosition(GetLocation);
         
@@ -22,9 +21,11 @@
             document.getElementById("lon").innerText = LON;
             document.getElementById("acc").innerText = ACC;
             
-            FINAL_URL   = BASE_URL.replace("$KEY", API_KEY).replace("$LAT", LAT).replace("$LON", LON);
+            FINAL_URL   = BASE_URL.replace("$KEY", API_KEY).replace("$LAT", LAT).replace("$LON", LON).replace("$SIZE","600x300");
+            MOBILE_URL   = BASE_URL.replace("$KEY", API_KEY).replace("$LAT", LAT).replace("$LON", LON).replace("$SIZE","460x230");
             
-            document.getElementById("map").src = FINAL_URL;
+            document.getElementByClassName("monitor").src = FINAL_URL;
+            document.getElementByClassName("mobile").src = MOBILE_URL;
         }       
     </script>
     <style>
@@ -32,8 +33,13 @@
             font-family: 'Segoe UI', sans-serif;
             background-color: rgb(128, 199, 158);
             color:#fff;
+            margin:0px;
+            padding:0px;
         }
-        img{
+        .map.mobile{
+            display:none;
+        }
+        .map{
             background-color: #EAEAEA;
             border: 1px solid #BABABA;
             margin: 10px;
@@ -55,6 +61,26 @@
         #content{
             margin-left:10px;
         }
+        
+        @media screen and (max-device-width: 480px){
+            body{
+                background-color:pink;
+            }
+            #content{
+                display:none;
+            }
+            .map.mobile{
+                display:block;
+                width:calc( 460px );
+                height:calc( 230px );
+                margin:0px;
+                border:none;
+                border-radius:none;
+                text-align: inherit;
+                line-height: inherit;
+                font-size: initial;
+            }
+        }
     </style>
 </head>
 <body>
@@ -64,7 +90,7 @@
         <b>Longitude: </b><span id="lon"></span>
         <b>Accuracy: </b><span id="acc"></span>
     </div>
-    <img id="map" class="monitor" src="" alt="GoogleMapsAPI - Failed to load" width="600px" height="300px" />
-    <img id="map" class="mobile" src="" alt="GoogleMapsAPI - Failed to load" width="460px" height="230px" />
+    <img class="map monitor" src="" alt="GoogleMapsAPI - Failed to load" width="600px" height="300px">
+    <img class="map mobile" src="" alt="GoogleMapsAPI - Failed to load" width="460px" height="230px">
 </body>
 </html>
