@@ -24,8 +24,8 @@
             FINAL_URL   = BASE_URL.replace("$KEY", API_KEY).replace("$LAT", LAT).replace("$LON", LON).replace("$SIZE","600x300");
             MOBILE_URL   = BASE_URL.replace("$KEY", API_KEY).replace("$LAT", LAT).replace("$LON", LON).replace("$SIZE","460x230");
             
-            document.getElementByClassName("monitor")[0].src = FINAL_URL;
-            document.getElementByClassName("mobile")[0].src = MOBILE_URL;
+            document.getElementsByClassName("monitor")[0].src = FINAL_URL;
+            document.getElementsByClassName("mobile")[0].src = MOBILE_URL;
         }       
     </script>
     <style>
