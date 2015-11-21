@@ -4,12 +4,28 @@
     <meta charset="UTF-8">
     <title>Location Services Test Page</title>
     <script>
+        var LAT,
+            LON,
+            ACC,
+            API_KEY     = "AIzaSyDOGrTCgXi7GXItcHrh881JdGLMVycsuPs",
+            BASE_URL    = "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=600x300&maptype=roadmap&markers=color:red%7Clabel:R%7C$LAT,$LON&key=$KEY",
+            FINAL_URL   = BASE_URL.replace("$KEY", API_KEY).replace("$LAT", LAT).replace("$LON", LON);
+        
         document.getElementById("test").onclick = navigator.geolocation.getCurrentPosition(GetLocation);
+        
         function GetLocation(location) {
-            document.getElementById("lat").innerText = location.coords.latitude;
-            document.getElementById("lon").innerText = location.coords.longitude;
-            document.getElementById("acc").innerText = location.coords.accuracy;
-        }            
+            LAT = location.coords.latitude;
+            LON = location.coords.longitude;
+            ACC = location.coords.accuracy;
+            
+            document.getElementById("lat").innerText = LAT;
+            document.getElementById("lon").innerText = LON;
+            document.getElementById("acc").innerText = ACC;
+            
+            FINAL_URL   = BASE_URL.replace("$KEY", API_KEY).replace("$LAT", LAT).replace("$LON", LON);
+            
+            document.getElementById("map").src = FINAL_URL;
+        }       
     </script>
 </head>
 <body>
@@ -19,5 +35,6 @@
         <b>Longitude: </b><span id="lon"></span>
         <b>Accuracy: </b><span id="acc"></span>
     </div>
+    <img id="map" src="" alt="GoogleMapsAPI" width="600px" height="300px" />
 </body>
 </html>
