@@ -32,8 +32,10 @@
             font-family: 'Segoe UI', sans-serif;
             background-color: rgb(128, 199, 158);
             color:#fff;
+            margin:0px;
+            padding:0px;
         }
-        img{
+        #map{
             background-color: #EAEAEA;
             border: 1px solid #BABABA;
             margin: 10px;
@@ -54,6 +56,25 @@
         }
         #content{
             margin-left:10px;
+        }
+        
+        @media screen and (max-device-width: 480px){
+            body{
+                background-color:pink;
+            }
+            #content{
+                display:none;
+            }
+            #map{
+                width:calc( 460px );
+                height:calc( 230px );
+                margin:0px;
+                border:none;
+                border-radius:none;
+                text-align: inherit;
+                line-height: inherit;
+                font-size: initial;
+            }
         }
     </style>
 </head>
