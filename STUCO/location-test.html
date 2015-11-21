@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Location Services Test Page</title>
+    <script>
+        document.getElementById("test").onclick = navigator.geolocation.getCurrentPosition(GetLocation);
+        function GetLocation(location) {
+            document.getElementById("lat").innerText = location.coords.latitude;
+            document.getElementById("lon").innerText = location.coords.longitude;
+            document.getElementById("acc").innerText = location.coords.accuracy;
+        }            
+    </script>
+</head>
+<body>
+    <button id="test">Test</button>
+    <div>
+        <b>Latitude: </b><span id="lat"></span>
+        <b>Longitude: </b><span id="lon"></span>
+        <b>Accuracy: </b><span id="acc"></span>
+    </div>
+</body>
+</html>
