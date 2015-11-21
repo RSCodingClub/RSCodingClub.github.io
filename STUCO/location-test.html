@@ -8,10 +8,10 @@
             LON,
             ACC,
             API_KEY     = "AIzaSyDOGrTCgXi7GXItcHrh881JdGLMVycsuPs",
-            BASE_URL    = "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=600x300&maptype=roadmap&markers=color:red%7Clabel:R%7C$LAT,$LON&key=$KEY",
+            BASE_URL    = "https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=600x300&maptype=roadmap&markers=color:red%7Clabel:R%7C$LAT,$LON&key=$KEY",
             FINAL_URL   = BASE_URL.replace("$KEY", API_KEY).replace("$LAT", LAT).replace("$LON", LON);
         
-        document.getElementById("test").onclick = navigator.geolocation.getCurrentPosition(GetLocation);
+        document.getElementById("test").onclick = navigator.geolocation.getCurrentPosition(GetLocation); return false;
         
         function GetLocation(location) {
             LAT = location.coords.latitude;
@@ -27,14 +27,43 @@
             document.getElementById("map").src = FINAL_URL;
         }       
     </script>
+    <style>
+        body{
+            font-family: 'Segoe UI', sans-serif;
+            background-color: rgb(128, 199, 158);
+            color:#fff;
+        }
+        img{
+            background-color: #EAEAEA;
+            border: 1px solid #BABABA;
+            margin: 10px;
+            border-radius: 5px;
+            color:#666;
+            text-align: center;
+            line-height: 300px;
+            font-size: 24px
+        }
+        a{
+            color:rgb(84, 111, 95);
+        }
+        b{
+            font-weight:600;
+        }
+        span{
+            color:rgb(84, 111, 95;
+        }
+        #content{
+            margin-left:10px;
+        }
+    </style>
 </head>
 <body>
-    <button id="test">Test</button>
-    <div>
+    <div id="content">
+        <a href="#" id="test">Request Location Data</a>
         <b>Latitude: </b><span id="lat"></span>
         <b>Longitude: </b><span id="lon"></span>
         <b>Accuracy: </b><span id="acc"></span>
     </div>
-    <img id="map" src="" alt="GoogleMapsAPI" width="600px" height="300px" />
+    <img id="map" src="" alt="GoogleMapsAPI - Failed to load" width="600px" height="300px" />
 </body>
 </html>
