@@ -7,8 +7,8 @@
             ACC,
             API_KEY     = "AIzaSyDOGrTCgXi7GXItcHrh881JdGLMVycsuPs",
             BASE_URL    = "https://maps.googleapis.com/maps/api/staticmap?zoom=$ZOOM&size=$SIZE&maptype=roadmap&markers=color:red%7C%7C$LAT,$LON&key=$KEY",
-            FINAL_URL   = BASE_URL.replace("$KEY", API_KEY).replace("$LAT", LAT).replace("$LON", LON).replace("$SIZE","600x300").replace("$ZOOM","13");
-            MOBILE_URL   = BASE_URL.replace("$KEY", API_KEY).replace("$LAT", LAT).replace("$LON", LON).replace("$SIZE","1380x690").replace("$ZOOM","17");
+            FINAL_URL   = BASE_URL.replace("$KEY", API_KEY).replace("$LAT", LAT).replace("$LON", LON).replace("$SIZE","600x300").replace("$ZOOM", 13);
+            MOBILE_URL   = BASE_URL.replace("$KEY", API_KEY).replace("$LAT", LAT).replace("$LON", LON).replace("$SIZE","1380x690").replace("$ZOOM", 17);
         
         document.getElementById("test").onclick = navigator.geolocation.getCurrentPosition(GetLocation);
         
