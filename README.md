@@ -1,0 +1,2 @@
+# RSCodingClub.github.io
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/57e87c7127424ec49ed5ea20ece8a7b1)](https://www.codacy.com/app/RSCodingClub/RSCodingClub-github-io?utm_source=github.com&utm_medium=referral&utm_content=RSCodingClub/RSCodingClub.github.io&utm_campaign=badger)
