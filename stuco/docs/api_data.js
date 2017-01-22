@@ -71,8 +71,8 @@ define({ "api": [
       },
       "examples": [
         {
-          "title": "Authorization:",
-          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyxyr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN8kDly6p5L23J\"\n}",
+          "title": "Authorization",
+          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyx.yr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN.8kDly6p5L23J\"\n}",
           "type": "json"
         }
       ]
@@ -85,13 +85,13 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "AuthError",
-            "description": "<p>Unauthorized</p>"
+            "description": "<p>User was unable to be authenticated</p>"
           }
         ]
       },
       "examples": [
         {
-          "title": "Response:",
+          "title": "Authentication Error",
           "content": "HTTP/1.1 401 Unauthorized\nUnauthorized",
           "type": "String"
         }
@@ -170,8 +170,8 @@ define({ "api": [
       },
       "examples": [
         {
-          "title": "Authorization:",
-          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyxyr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN8kDly6p5L23J\"\n}",
+          "title": "Authorization",
+          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyx.yr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN.8kDly6p5L23J\"\n}",
           "type": "json"
         }
       ]
@@ -184,13 +184,13 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "AuthError",
-            "description": "<p>Unauthorized</p>"
+            "description": "<p>User was unable to be authenticated</p>"
           }
         ]
       },
       "examples": [
         {
-          "title": "Response:",
+          "title": "Authentication Error",
           "content": "HTTP/1.1 401 Unauthorized\nUnauthorized",
           "type": "String"
         }
@@ -312,8 +312,8 @@ define({ "api": [
       },
       "examples": [
         {
-          "title": "Authorization:",
-          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyxyr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN8kDly6p5L23J\"\n}",
+          "title": "Authorization",
+          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyx.yr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN.8kDly6p5L23J\"\n}",
           "type": "json"
         }
       ]
@@ -326,14 +326,173 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "AuthError",
-            "description": "<p>Unauthorized</p>"
+            "description": "<p>User was unable to be authenticated</p>"
           }
         ]
       },
       "examples": [
         {
-          "title": "Response:",
+          "title": "Authentication Error",
           "content": "HTTP/1.1 401 Unauthorized\nUnauthorized",
+          "type": "String"
+        }
+      ]
+    }
+  },
+  {
+    "type": "get",
+    "url": "/api/user/v1/:googleid/score/all",
+    "title": "Get all scores",
+    "version": "1.0.0",
+    "name": "GetAllScores",
+    "group": "User",
+    "description": "<p>Returns the all scores for the requested user</p>",
+    "permission": [
+      {
+        "name": "teacher",
+        "title": "teacher",
+        "description": "<p>Teacher role for micromanaging the public side of the application</p>"
+      },
+      {
+        "name": "stuco",
+        "title": "stuco",
+        "description": "<p>Student council role allowing managing for maintaining the public side of the application</p>"
+      },
+      {
+        "name": "developer",
+        "title": "developer",
+        "description": "<p>Developer role with features any feature needed to modify or continue progress on the public or private application</p>"
+      },
+      {
+        "name": "admin",
+        "title": "admin",
+        "description": "<p>Admin role with any permissions required for running the application</p>"
+      },
+      {
+        "name": "self",
+        "title": "self",
+        "description": "<p>Assumed role if authenticated user and target user are the same, used for managing account</p>"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "scores",
+            "description": "<p>The user's scores</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "scores.bid",
+            "description": "<p>A score's associated badge</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "scores.eid",
+            "description": "<p>A score's associated event</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "scores.timestamp",
+            "description": "<p>The time the score was awarded</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "scores.value",
+            "description": "<p>The number of points the score gave</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": true,
+            "field": "scores.type",
+            "defaultValue": "unknown",
+            "description": "<p>The type of score added</p>"
+          }
+        ]
+      }
+    },
+    "filename": "web/router/api/user/v1/score.js",
+    "groupTitle": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Prefixed Google JWT token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Authorization",
+          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyx.yr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN.8kDly6p5L23J\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "AuthError",
+            "description": "<p>User was unable to be authenticated</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "type": "json",
+            "optional": false,
+            "field": "UserNotFound",
+            "description": "<p>The requested user was unable to be found.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Authentication Error",
+          "content": "HTTP/1.1 401 Unauthorized\nUnauthorized",
+          "type": "String"
+        },
+        {
+          "title": "User Not Found Error",
+          "content": "{\n  \"error\": \"User Not Found\",\n  \"errorid\": 0\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "googleid",
+            "description": "<p>A user's Google profile's unique identifier</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "GoogleId Example",
+          "content": "\"108718953214804737014\"",
           "type": "String"
         }
       ]
@@ -487,8 +646,8 @@ define({ "api": [
       },
       "examples": [
         {
-          "title": "Authorization:",
-          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyxyr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN8kDly6p5L23J\"\n}",
+          "title": "Authorization",
+          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyx.yr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN.8kDly6p5L23J\"\n}",
           "type": "json"
         }
       ]
@@ -501,21 +660,27 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "AuthError",
-            "description": "<p>Unauthorized</p>"
+            "description": "<p>User was unable to be authenticated</p>"
           },
           {
             "group": "Error 4xx",
+            "type": "json",
             "optional": false,
             "field": "UserNotFound",
-            "description": "<p>The user <code>googleid</code> was not found</p>"
+            "description": "<p>The requested user was unable to be found.</p>"
           }
         ]
       },
       "examples": [
         {
-          "title": "Response:",
+          "title": "Authentication Error",
           "content": "HTTP/1.1 401 Unauthorized\nUnauthorized",
           "type": "String"
+        },
+        {
+          "title": "User Not Found Error",
+          "content": "{\n  \"error\": \"User Not Found\",\n  \"errorid\": 0\n}",
+          "type": "json"
         }
       ]
     },
@@ -533,7 +698,7 @@ define({ "api": [
       },
       "examples": [
         {
-          "title": "GoogleId-Example:",
+          "title": "GoogleId Example",
           "content": "\"108718953214804737014\"",
           "type": "String"
         }
@@ -701,8 +866,8 @@ define({ "api": [
       },
       "examples": [
         {
-          "title": "Authorization:",
-          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyxyr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN8kDly6p5L23J\"\n}",
+          "title": "Authorization",
+          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyx.yr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN.8kDly6p5L23J\"\n}",
           "type": "json"
         }
       ]
@@ -715,21 +880,27 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "AuthError",
-            "description": "<p>Unauthorized</p>"
+            "description": "<p>User was unable to be authenticated</p>"
           },
           {
             "group": "Error 4xx",
+            "type": "json",
             "optional": false,
             "field": "UserNotFound",
-            "description": "<p>The user <code>googleid</code> was not found</p>"
+            "description": "<p>The requested user was unable to be found.</p>"
           }
         ]
       },
       "examples": [
         {
-          "title": "Response:",
+          "title": "Authentication Error",
           "content": "HTTP/1.1 401 Unauthorized\nUnauthorized",
           "type": "String"
+        },
+        {
+          "title": "User Not Found Error",
+          "content": "{\n  \"error\": \"User Not Found\",\n  \"errorid\": 0\n}",
+          "type": "json"
         }
       ]
     },
@@ -747,7 +918,7 @@ define({ "api": [
       },
       "examples": [
         {
-          "title": "GoogleId-Example:",
+          "title": "GoogleId Example",
           "content": "\"108718953214804737014\"",
           "type": "String"
         }
@@ -833,8 +1004,8 @@ define({ "api": [
       },
       "examples": [
         {
-          "title": "Authorization:",
-          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyxyr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN8kDly6p5L23J\"\n}",
+          "title": "Authorization",
+          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyx.yr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN.8kDly6p5L23J\"\n}",
           "type": "json"
         }
       ]
@@ -847,77 +1018,13 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "AuthError",
-            "description": "<p>Unauthorized</p>"
+            "description": "<p>User was unable to be authenticated</p>"
           }
         ]
       },
       "examples": [
         {
-          "title": "Response:",
-          "content": "HTTP/1.1 401 Unauthorized\nUnauthorized",
-          "type": "String"
-        }
-      ]
-    }
-  },
-  {
-    "type": "get",
-    "url": "/api/user/v1/:googleid/name",
-    "title": "Get a user's name",
-    "version": "1.0.0",
-    "name": "GetName",
-    "group": "User",
-    "description": "<p>Returns the name of the target user</p>",
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "name",
-            "description": "<p>The user's name</p>"
-          }
-        ]
-      }
-    },
-    "filename": "web/router/api/user/v1/name.js",
-    "groupTitle": "User",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Prefixed Google JWT token</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Authorization:",
-          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyxyr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN8kDly6p5L23J\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "type": "String",
-            "optional": false,
-            "field": "AuthError",
-            "description": "<p>Unauthorized</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Response:",
+          "title": "Authentication Error",
           "content": "HTTP/1.1 401 Unauthorized\nUnauthorized",
           "type": "String"
         }
@@ -961,8 +1068,8 @@ define({ "api": [
       },
       "examples": [
         {
-          "title": "Authorization:",
-          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyxyr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN8kDly6p5L23J\"\n}",
+          "title": "Authorization",
+          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyx.yr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN.8kDly6p5L23J\"\n}",
           "type": "json"
         }
       ]
@@ -975,14 +1082,174 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "AuthError",
-            "description": "<p>Unauthorized</p>"
+            "description": "<p>User was unable to be authenticated</p>"
           }
         ]
       },
       "examples": [
         {
-          "title": "Response:",
+          "title": "Authentication Error",
           "content": "HTTP/1.1 401 Unauthorized\nUnauthorized",
+          "type": "String"
+        }
+      ]
+    }
+  },
+  {
+    "type": "get",
+    "url": "/api/user/v1/:googleid/name",
+    "title": "Get a user's name",
+    "version": "1.0.0",
+    "name": "GetName",
+    "group": "User",
+    "description": "<p>Returns the name of the target user</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>The user's name</p>"
+          }
+        ]
+      }
+    },
+    "filename": "web/router/api/user/v1/name.js",
+    "groupTitle": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Prefixed Google JWT token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Authorization",
+          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyx.yr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN.8kDly6p5L23J\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "AuthError",
+            "description": "<p>User was unable to be authenticated</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Authentication Error",
+          "content": "HTTP/1.1 401 Unauthorized\nUnauthorized",
+          "type": "String"
+        }
+      ]
+    }
+  },
+  {
+    "type": "get",
+    "url": "/api/user/v1/:googleid/score/all",
+    "title": "Get total score",
+    "version": "1.0.0",
+    "name": "GetScore",
+    "group": "User",
+    "description": "<p>Returns the total score for the requested user</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "score",
+            "description": "<p>The user's total score</p>"
+          }
+        ]
+      }
+    },
+    "filename": "web/router/api/user/v1/score.js",
+    "groupTitle": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Prefixed Google JWT token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Authorization",
+          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyx.yr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN.8kDly6p5L23J\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "AuthError",
+            "description": "<p>User was unable to be authenticated</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "type": "json",
+            "optional": false,
+            "field": "UserNotFound",
+            "description": "<p>The requested user was unable to be found.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Authentication Error",
+          "content": "HTTP/1.1 401 Unauthorized\nUnauthorized",
+          "type": "String"
+        },
+        {
+          "title": "User Not Found Error",
+          "content": "{\n  \"error\": \"User Not Found\",\n  \"errorid\": 0\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "googleid",
+            "description": "<p>A user's Google profile's unique identifier</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "GoogleId Example",
+          "content": "\"108718953214804737014\"",
           "type": "String"
         }
       ]
@@ -1067,8 +1334,8 @@ define({ "api": [
       },
       "examples": [
         {
-          "title": "Authorization:",
-          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyxyr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN8kDly6p5L23J\"\n}",
+          "title": "Authorization",
+          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyx.yr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN.8kDly6p5L23J\"\n}",
           "type": "json"
         }
       ]
@@ -1081,13 +1348,13 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "AuthError",
-            "description": "<p>Unauthorized</p>"
+            "description": "<p>User was unable to be authenticated</p>"
           }
         ]
       },
       "examples": [
         {
-          "title": "Response:",
+          "title": "Authentication Error",
           "content": "HTTP/1.1 401 Unauthorized\nUnauthorized",
           "type": "String"
         }
@@ -1173,8 +1440,8 @@ define({ "api": [
       },
       "examples": [
         {
-          "title": "Authorization:",
-          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyxyr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN8kDly6p5L23J\"\n}",
+          "title": "Authorization",
+          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyx.yr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN.8kDly6p5L23J\"\n}",
           "type": "json"
         }
       ]
@@ -1187,21 +1454,27 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "AuthError",
-            "description": "<p>Unauthorized</p>"
+            "description": "<p>User was unable to be authenticated</p>"
           },
           {
             "group": "Error 4xx",
+            "type": "json",
             "optional": false,
             "field": "UserNotFound",
-            "description": "<p>The user <code>googleid</code> was not found</p>"
+            "description": "<p>The requested user was unable to be found.</p>"
           }
         ]
       },
       "examples": [
         {
-          "title": "Response:",
+          "title": "Authentication Error",
           "content": "HTTP/1.1 401 Unauthorized\nUnauthorized",
           "type": "String"
+        },
+        {
+          "title": "User Not Found Error",
+          "content": "{\n  \"error\": \"User Not Found\",\n  \"errorid\": 0\n}",
+          "type": "json"
         }
       ]
     },
@@ -1219,9 +1492,193 @@ define({ "api": [
       },
       "examples": [
         {
-          "title": "GoogleId-Example:",
+          "title": "GoogleId Example",
           "content": "\"108718953214804737014\"",
           "type": "String"
+        }
+      ]
+    }
+  },
+  {
+    "type": "put",
+    "url": "/api/user/v1/:googleid/score",
+    "title": "Give a score",
+    "version": "1.0.0",
+    "name": "GiveScore",
+    "group": "User",
+    "description": "<p>Give a user a score</p>",
+    "permission": [
+      {
+        "name": "developer",
+        "title": "developer",
+        "description": "<p>Developer role with features any feature needed to modify or continue progress on the public or private application</p>"
+      },
+      {
+        "name": "admin",
+        "title": "admin",
+        "description": "<p>Admin role with any permissions required for running the application</p>"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": true,
+            "field": "value",
+            "defaultValue": "0",
+            "description": "<p>The point reward for the score to be added</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "type",
+            "defaultValue": "unknown",
+            "description": "<p>The type of the score</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": true,
+            "field": "eid",
+            "defaultValue": "-1",
+            "description": "<p>The event id associated with the score</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": true,
+            "field": "bid",
+            "defaultValue": "-1",
+            "description": "<p>The badge id associated with the score</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": true,
+            "field": "timestamp",
+            "defaultValue": "now",
+            "description": "<p>The time the score was awarded</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "googleid",
+            "description": "<p>A user's Google profile's unique identifier</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "GoogleId Example",
+          "content": "\"108718953214804737014\"",
+          "type": "String"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "scores",
+            "description": "<p>The user's scores</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "scores.bid",
+            "description": "<p>A score's associated badge</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "scores.eid",
+            "description": "<p>A score's associated event</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "scores.timestamp",
+            "description": "<p>The time the score was awarded</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "scores.value",
+            "description": "<p>The number of points the score gave</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": true,
+            "field": "scores.type",
+            "defaultValue": "unknown",
+            "description": "<p>The type of score added</p>"
+          }
+        ]
+      }
+    },
+    "filename": "web/router/api/user/v1/score.js",
+    "groupTitle": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Prefixed Google JWT token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Authorization",
+          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyx.yr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN.8kDly6p5L23J\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "AuthError",
+            "description": "<p>User was unable to be authenticated</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "type": "json",
+            "optional": false,
+            "field": "UserNotFound",
+            "description": "<p>The requested user was unable to be found.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Authentication Error",
+          "content": "HTTP/1.1 401 Unauthorized\nUnauthorized",
+          "type": "String"
+        },
+        {
+          "title": "User Not Found Error",
+          "content": "{\n  \"error\": \"User Not Found\",\n  \"errorid\": 0\n}",
+          "type": "json"
         }
       ]
     }
@@ -1280,8 +1737,8 @@ define({ "api": [
       },
       "examples": [
         {
-          "title": "Authorization:",
-          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyxyr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN8kDly6p5L23J\"\n}",
+          "title": "Authorization",
+          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyx.yr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN.8kDly6p5L23J\"\n}",
           "type": "json"
         }
       ]
@@ -1294,13 +1751,13 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "AuthError",
-            "description": "<p>Unauthorized</p>"
+            "description": "<p>User was unable to be authenticated</p>"
           }
         ]
       },
       "examples": [
         {
-          "title": "Response:",
+          "title": "Authentication Error",
           "content": "HTTP/1.1 401 Unauthorized\nUnauthorized",
           "type": "String"
         }
@@ -1366,8 +1823,8 @@ define({ "api": [
       },
       "examples": [
         {
-          "title": "Authorization:",
-          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyxyr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN8kDly6p5L23J\"\n}",
+          "title": "Authorization",
+          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyx.yr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN.8kDly6p5L23J\"\n}",
           "type": "json"
         }
       ]
@@ -1380,15 +1837,204 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "AuthError",
-            "description": "<p>Unauthorized</p>"
+            "description": "<p>User was unable to be authenticated</p>"
           }
         ]
       },
       "examples": [
         {
-          "title": "Response:",
+          "title": "Authentication Error",
           "content": "HTTP/1.1 401 Unauthorized\nUnauthorized",
           "type": "String"
+        }
+      ]
+    }
+  },
+  {
+    "type": "delete",
+    "url": "/api/user/v1/:googleid/score",
+    "title": "Take a score",
+    "version": "1.0.0",
+    "name": "TakeScore",
+    "group": "User",
+    "description": "<p>Search and remove a score by parameters</p>",
+    "permission": [
+      {
+        "name": "developer",
+        "title": "developer",
+        "description": "<p>Developer role with features any feature needed to modify or continue progress on the public or private application</p>"
+      },
+      {
+        "name": "admin",
+        "title": "admin",
+        "description": "<p>Admin role with any permissions required for running the application</p>"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": true,
+            "field": "value",
+            "defaultValue": "0",
+            "description": "<p>The point reward for the score to be added</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "type",
+            "defaultValue": "unknown",
+            "description": "<p>The type of the score</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": true,
+            "field": "eid",
+            "defaultValue": "-1",
+            "description": "<p>The event id associated with the score</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": true,
+            "field": "bid",
+            "defaultValue": "-1",
+            "description": "<p>The badge id associated with the score</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": true,
+            "field": "timestamp",
+            "defaultValue": "now",
+            "description": "<p>The time the score was awarded</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "googleid",
+            "description": "<p>A user's Google profile's unique identifier</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Remove-Score-From-Badge:",
+          "content": "{\n  \"bid\": 3\n}",
+          "type": "json"
+        },
+        {
+          "title": "GoogleId Example",
+          "content": "\"108718953214804737014\"",
+          "type": "String"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "scores",
+            "description": "<p>The user's scores</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "scores.bid",
+            "description": "<p>A score's associated badge</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "scores.eid",
+            "description": "<p>A score's associated event</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "scores.timestamp",
+            "description": "<p>The time the score was awarded</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "scores.value",
+            "description": "<p>The number of points the score gave</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": true,
+            "field": "scores.type",
+            "defaultValue": "unknown",
+            "description": "<p>The type of score added</p>"
+          }
+        ]
+      }
+    },
+    "filename": "web/router/api/user/v1/score.js",
+    "groupTitle": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Prefixed Google JWT token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Authorization",
+          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyx.yr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN.8kDly6p5L23J\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "AuthError",
+            "description": "<p>User was unable to be authenticated</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "type": "json",
+            "optional": false,
+            "field": "UserNotFound",
+            "description": "<p>The requested user was unable to be found.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Authentication Error",
+          "content": "HTTP/1.1 401 Unauthorized\nUnauthorized",
+          "type": "String"
+        },
+        {
+          "title": "User Not Found Error",
+          "content": "{\n  \"error\": \"User Not Found\",\n  \"errorid\": 0\n}",
+          "type": "json"
         }
       ]
     }
