@@ -10,7 +10,7 @@
             FINAL_URL   = BASE_URL.replace("$KEY", API_KEY).replace("$LAT", LAT).replace("$LON", LON).replace("$SIZE","600x300").replace("$ZOOM", 13);
             MOBILE_URL   = BASE_URL.replace("$KEY", API_KEY).replace("$LAT", LAT).replace("$LON", LON).replace("$SIZE","1380x690").replace("$ZOOM", 17);
         
-        document.getElementById("test").onclick = navigator.geolocation.getCurrentPosition(GetLocation);
+        document.getElementById("test").onclick = navigator.geolocation.getCurrentPosition(GetLocation, alert("In order to test your location you need to allow us access to it."));
         
         function GetLocation(location) {
             LAT = location.coords.latitude;

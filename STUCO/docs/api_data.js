@@ -55,7 +55,7 @@ define({ "api": [
         ]
       }
     },
-    "filename": "web/router/api/badge/v1/index.js",
+    "filename": "C:/Users/Jeffrey/Documents/Github/RSCodingClub/STUCO-Backend/web/router/api/badge/v1/index.js",
     "groupTitle": "Badges",
     "header": {
       "fields": {
@@ -154,7 +154,7 @@ define({ "api": [
         ]
       }
     },
-    "filename": "web/router/api/badge/v1/index.js",
+    "filename": "C:/Users/Jeffrey/Documents/Github/RSCodingClub/STUCO-Backend/web/router/api/badge/v1/index.js",
     "groupTitle": "Badges",
     "header": {
       "fields": {
@@ -296,7 +296,7 @@ define({ "api": [
         ]
       }
     },
-    "filename": "web/router/api/bugreport/v1/index.js",
+    "filename": "C:/Users/Jeffrey/Documents/Github/RSCodingClub/STUCO-Backend/web/router/api/bugreport/v1/index.js",
     "groupTitle": "Bugreport",
     "header": {
       "fields": {
@@ -337,6 +337,153 @@ define({ "api": [
           "type": "String"
         }
       ]
+    }
+  },
+  {
+    "type": "post",
+    "url": "/api/event/v1/:eventid/checkin",
+    "title": "Check into an event",
+    "version": "1.0.0",
+    "name": "EventCheckin",
+    "group": "Event",
+    "description": "<p>Check the authenticated user into and event</p>",
+    "parameter": {
+      "fields": {
+        "Location": [
+          {
+            "group": "Location",
+            "type": "Number",
+            "optional": false,
+            "field": "latitude",
+            "description": "<p>User's latitude</p>"
+          },
+          {
+            "group": "Location",
+            "type": "Number",
+            "optional": false,
+            "field": "longitude",
+            "description": "<p>User's longitude</p>"
+          },
+          {
+            "group": "Location",
+            "type": "Number",
+            "optional": true,
+            "field": "accuracy",
+            "defaultValue": "50",
+            "description": "<p>User's location service accuracy</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Event Time 400": [
+          {
+            "group": "Event Time 400",
+            "optional": false,
+            "field": "NotDuringEventTime",
+            "description": "<p>{400} When a user attempts to checkin outside of an events time</p>"
+          }
+        ],
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "AuthError",
+            "description": "<p>User was unable to be authenticated</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400\n{\n  \"error\": \"Not During Event Time\",\n  \"errorid\": 10\n}",
+          "type": "json"
+        },
+        {
+          "title": "Authentication Error",
+          "content": "HTTP/1.1 401 Unauthorized\nUnauthorized",
+          "type": "String"
+        }
+      ]
+    },
+    "filename": "C:/Users/Jeffrey/Documents/Github/RSCodingClub/STUCO-Backend/web/router/api/event/v1/checkin.js",
+    "groupTitle": "Event",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Prefixed Google JWT token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Authorization",
+          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyx.yr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN.8kDly6p5L23J\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>The user's public profile</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.uid",
+            "description": "<p>The user's unique id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.name",
+            "description": "<p>The user's name</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.nickname",
+            "description": "<p>The user's nickname</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "user.score",
+            "description": "<p>The user's total score</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number[]",
+            "optional": false,
+            "field": "user.badges",
+            "description": "<p>List of badge ids the user has</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Strine",
+            "optional": false,
+            "field": "user.role",
+            "description": "<p>The users current permission role</p>"
+          }
+        ]
+      }
     }
   },
   {
@@ -423,7 +570,7 @@ define({ "api": [
         ]
       }
     },
-    "filename": "web/router/api/user/v1/score.js",
+    "filename": "C:/Users/Jeffrey/Documents/Github/RSCodingClub/STUCO-Backend/web/router/api/user/v1/score.js",
     "groupTitle": "User",
     "header": {
       "fields": {
@@ -630,7 +777,7 @@ define({ "api": [
         ]
       }
     },
-    "filename": "web/router/api/user/v1/user.js",
+    "filename": "C:/Users/Jeffrey/Documents/Github/RSCodingClub/STUCO-Backend/web/router/api/user/v1/user.js",
     "groupTitle": "User",
     "header": {
       "fields": {
@@ -850,7 +997,7 @@ define({ "api": [
         ]
       }
     },
-    "filename": "web/router/api/user/v1/user.js",
+    "filename": "C:/Users/Jeffrey/Documents/Github/RSCodingClub/STUCO-Backend/web/router/api/user/v1/user.js",
     "groupTitle": "User",
     "header": {
       "fields": {
@@ -933,12 +1080,54 @@ define({ "api": [
     "name": "GetLeaderboard",
     "group": "User",
     "description": "<p>Returns an array of the public profile in order of score</p>",
+    "filename": "C:/Users/Jeffrey/Documents/Github/RSCodingClub/STUCO-Backend/web/router/api/user/v1/index.js",
+    "groupTitle": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Prefixed Google JWT token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Authorization",
+          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyx.yr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN.8kDly6p5L23J\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "AuthError",
+            "description": "<p>User was unable to be authenticated</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Authentication Error",
+          "content": "HTTP/1.1 401 Unauthorized\nUnauthorized",
+          "type": "String"
+        }
+      ]
+    },
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object[]",
+            "type": "Object",
             "optional": false,
             "field": "user",
             "description": "<p>The user's public profile</p>"
@@ -987,8 +1176,30 @@ define({ "api": [
           }
         ]
       }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/api/user/v1/:googleid/name",
+    "title": "Get a user's name",
+    "version": "1.0.0",
+    "name": "GetName",
+    "group": "User",
+    "description": "<p>Returns the name of the target user</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>The user's name</p>"
+          }
+        ]
+      }
     },
-    "filename": "web/router/api/user/v1/index.js",
+    "filename": "C:/Users/Jeffrey/Documents/Github/RSCodingClub/STUCO-Backend/web/router/api/user/v1/name.js",
     "groupTitle": "User",
     "header": {
       "fields": {
@@ -1052,71 +1263,7 @@ define({ "api": [
         ]
       }
     },
-    "filename": "web/router/api/user/v1/nickname.js",
-    "groupTitle": "User",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Prefixed Google JWT token</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Authorization",
-          "content": "{\n  \"Authorization\": \"JWT WVYpCSuZiyx.yr4j1ZUScxn7JjOjenlaEDPJmuNvgooXpgZyN.8kDly6p5L23J\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "type": "String",
-            "optional": false,
-            "field": "AuthError",
-            "description": "<p>User was unable to be authenticated</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Authentication Error",
-          "content": "HTTP/1.1 401 Unauthorized\nUnauthorized",
-          "type": "String"
-        }
-      ]
-    }
-  },
-  {
-    "type": "get",
-    "url": "/api/user/v1/:googleid/name",
-    "title": "Get a user's name",
-    "version": "1.0.0",
-    "name": "GetName",
-    "group": "User",
-    "description": "<p>Returns the name of the target user</p>",
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "name",
-            "description": "<p>The user's name</p>"
-          }
-        ]
-      }
-    },
-    "filename": "web/router/api/user/v1/name.js",
+    "filename": "C:/Users/Jeffrey/Documents/Github/RSCodingClub/STUCO-Backend/web/router/api/user/v1/nickname.js",
     "groupTitle": "User",
     "header": {
       "fields": {
@@ -1180,7 +1327,7 @@ define({ "api": [
         ]
       }
     },
-    "filename": "web/router/api/user/v1/score.js",
+    "filename": "C:/Users/Jeffrey/Documents/Github/RSCodingClub/STUCO-Backend/web/router/api/user/v1/score.js",
     "groupTitle": "User",
     "header": {
       "fields": {
@@ -1263,62 +1410,7 @@ define({ "api": [
     "name": "GetSelfUser",
     "group": "User",
     "description": "<p>Returns the public profile of the currently authenticated user</p>",
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "user",
-            "description": "<p>The user's public profile</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "user.uid",
-            "description": "<p>The user's unique id</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "user.name",
-            "description": "<p>The user's name</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "user.nickname",
-            "description": "<p>The user's nickname</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "user.score",
-            "description": "<p>The user's total score</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Number[]",
-            "optional": false,
-            "field": "user.badges",
-            "description": "<p>List of badge ids the user has</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Strine",
-            "optional": false,
-            "field": "user.role",
-            "description": "<p>The users current permission role</p>"
-          }
-        ]
-      }
-    },
-    "filename": "web/router/api/user/v1/index.js",
+    "filename": "C:/Users/Jeffrey/Documents/Github/RSCodingClub/STUCO-Backend/web/router/api/user/v1/index.js",
     "groupTitle": "User",
     "header": {
       "fields": {
@@ -1359,16 +1451,7 @@ define({ "api": [
           "type": "String"
         }
       ]
-    }
-  },
-  {
-    "type": "get",
-    "url": "/api/user/v1/:googleid",
-    "title": "Get a specified user",
-    "version": "1.0.0",
-    "name": "GetUser",
-    "group": "User",
-    "description": "<p>Returns the public profile of the requested user</p>",
+    },
     "success": {
       "fields": {
         "Success 200": [
@@ -1423,8 +1506,17 @@ define({ "api": [
           }
         ]
       }
-    },
-    "filename": "web/router/api/user/v1/user.js",
+    }
+  },
+  {
+    "type": "get",
+    "url": "/api/user/v1/:googleid",
+    "title": "Get a specified user",
+    "version": "1.0.0",
+    "name": "GetUser",
+    "group": "User",
+    "description": "<p>Returns the public profile of the requested user</p>",
+    "filename": "C:/Users/Jeffrey/Documents/Github/RSCodingClub/STUCO-Backend/web/router/api/user/v1/user.js",
     "groupTitle": "User",
     "header": {
       "fields": {
@@ -1497,6 +1589,61 @@ define({ "api": [
           "type": "String"
         }
       ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>The user's public profile</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.uid",
+            "description": "<p>The user's unique id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.name",
+            "description": "<p>The user's name</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.nickname",
+            "description": "<p>The user's nickname</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "user.score",
+            "description": "<p>The user's total score</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number[]",
+            "optional": false,
+            "field": "user.badges",
+            "description": "<p>List of badge ids the user has</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Strine",
+            "optional": false,
+            "field": "user.role",
+            "description": "<p>The users current permission role</p>"
+          }
+        ]
+      }
     }
   },
   {
@@ -1628,7 +1775,7 @@ define({ "api": [
         ]
       }
     },
-    "filename": "web/router/api/user/v1/score.js",
+    "filename": "C:/Users/Jeffrey/Documents/Github/RSCodingClub/STUCO-Backend/web/router/api/user/v1/score.js",
     "groupTitle": "User",
     "header": {
       "fields": {
@@ -1721,7 +1868,7 @@ define({ "api": [
         ]
       }
     },
-    "filename": "web/router/api/user/v1/name.js",
+    "filename": "C:/Users/Jeffrey/Documents/Github/RSCodingClub/STUCO-Backend/web/router/api/user/v1/name.js",
     "groupTitle": "User",
     "header": {
       "fields": {
@@ -1807,7 +1954,7 @@ define({ "api": [
         ]
       }
     },
-    "filename": "web/router/api/user/v1/nickname.js",
+    "filename": "C:/Users/Jeffrey/Documents/Github/RSCodingClub/STUCO-Backend/web/router/api/user/v1/nickname.js",
     "groupTitle": "User",
     "header": {
       "fields": {
@@ -1984,7 +2131,7 @@ define({ "api": [
         ]
       }
     },
-    "filename": "web/router/api/user/v1/score.js",
+    "filename": "C:/Users/Jeffrey/Documents/Github/RSCodingClub/STUCO-Backend/web/router/api/user/v1/score.js",
     "groupTitle": "User",
     "header": {
       "fields": {
